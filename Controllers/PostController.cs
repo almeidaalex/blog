@@ -14,26 +14,9 @@ namespace Blog.Controllers
 
         public IActionResult Index()
         {
-            using (var conexao = ConnectionFactory.CriaConexaoAberta())
-            {
-                
-                SqlCommand comando = new SqlCommand("select * from Posts", conexao);
-
-                SqlDataReader leitor = comando.ExecuteReader();
-
-                while (leitor.Read())
-                {
-                    var post = new Post();
-                    post.Titulo = leitor["Titulo"].ToString();
-                    post.Resumo = leitor["Resumo"].ToString();
-                    post.Categoria = leitor["categoria"].ToString();
-                    post.Id = Convert.ToInt32(leitor["Id"]);
-
-                    _posts.Add(post);
-                }
-            }
-
-            return View(_posts);
+            var dao = new PostDAO();
+            var lista = dao.Lista();
+            return View(lista);
         }
 
 
@@ -45,12 +28,39 @@ namespace Blog.Controllers
         [HttpPost]
         public IActionResult Adiciona(Post post)
         {
-
-
-            _posts.Add(post);
-            return View("Index", post);
+            var dao = new PostDAO();
+            dao.Adiciona(post);
+            return RedirectToAction("Index");
         }
 
+        public IActionResult RemovePost(int id)
+        {
+            var dao = new PostDAO();
+            dao.Remove(id);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Visualiza(int id)
+        {
+            var dao = new PostDAO();
+            var post = dao.BuscaPorId(id);
+            return View(post);
+        }
+
+        [HttpPost]
+        public IActionResult EditaPost(Post post)
+        {
+            var dao = new PostDAO();
+            dao.Atualiza(post);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult PublicaPost(int id)
+        {
+            var dao = new PostDAO();
+            dao.Publica(id);
+            return RedirectToAction("Index");
+        }
 
     }
 }

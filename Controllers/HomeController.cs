@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Blog.Models;
 
+
 namespace Blog.Controllers
 {
     public class HomeController : Controller

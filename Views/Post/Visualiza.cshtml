@@ -1,15 +1,26 @@
 ﻿@model Blog.Models.Post
 
-<form action="/Post/EditaPost" method="post">
-    <input type="hidden" name="id" value="@Model.Id" />
-    <label>
-        Título: <input name="titulo" value="@Model.Titulo" />
-    </label>
-    <label>
-        Resumo: <input name="resumo" value="@Model.Resumo" />
-    </label>
-    <label>
-        Categoria: <input name="categoria" value="@Model.Categoria" />
-    </label>
-    <button type="submit">Cadastrar</button>
-</form>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<html>
+<head>
+    <link href="~/css/jquery-ui.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <form asp-controller="Post" asp-action="Atualiza" method="post">
+
+        @Html.EditorForModel()
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+
+    <script src="~/js/jquery-3.4.1.min.js"></script>
+    <script src="~/js/jquery.validate.min.js"></script>
+
+    <script src="~/js/jquery.validate.unobtrusive.js"></script>
+
+</body>
+</html>

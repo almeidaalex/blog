@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using Blog.Infra;
 using Blog.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Blog.Controllers
 {
@@ -28,9 +29,17 @@ namespace Blog.Controllers
         [HttpPost]
         public IActionResult Adiciona(Post post)
         {
-            var dao = new PostDAO();
-            dao.Adiciona(post);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                
+                var dao = new PostDAO();
+                dao.Adiciona(post);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("Novo", post);
+            }
         }
 
         public IActionResult RemovePost(int id)

@@ -1,16 +1,21 @@
-﻿<html>
-    <body>
-        <form action="/Post/Adiciona" method="post">
-            <label for="titulo">Título</label>
-            <input type="text" name="titulo" />
+﻿@model Blog.Models.Post
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-            <label for="resumo">Resumo</label>
-            <input type="text" name="resumo" />
+<html>
+<body>
+    <form asp-controller="Post" asp-action="Adiciona" method="post">
+        
+        @Html.EditorForModel()
 
-            <label for="categoria">Cateogria</label>
-            <input type="text" name="categoria" />
+        <button type="submit">Cadastrar</button>
 
-            <button type="submit">Cadastrar</button>
-        </form>
-    </body>
+    </form>
+
+
+    <script src="~/js/jquery-3.4.1.min.js"></script>
+    <script src="~/js/jquery.validate.min.js"></script>
+
+    <script src="~/js/jquery.validate.unobtrusive.js"></script>
+
+</body>
 </html>

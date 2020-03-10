@@ -1,0 +1,17 @@
+﻿@model Post
+
+<h1>Incluir Post</h1>
+<form asp-controller="Post" asp-action="Adiciona" method="post">
+
+    @Html.EditorForModel()
+
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+</form>
+
+
+
+@section Scripts
+{
+    <partial name="_Scripts" />
+}

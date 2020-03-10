@@ -1,12 +1,33 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
 
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>Resenha Cultural</title>
-    </head>
-    <body>
-        <h1>ViewStart</h1>
-        @RenderBody()
-    </body>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Resenha Cultural</title>
+    <link href="~/css/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/estilo.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <partial name="Cabecalho" />
+    </header>
+    <div class="container clearfix">
+        <main>
+            @RenderBody()
+        </main>
+
+        <partial name="Lateral" />
+
+    </div>
+    <footer>
+        <p>&copy; Resenha Cultural - 2020</p>
+    </footer>
+    @RenderSection("Scripts", false)
+</body>
+
 </html>
+
+

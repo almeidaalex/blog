@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Blog.Controllers
 {
+    [Area("Admin")]
     public class PostController : Controller
     {
         IList<Post> _posts = new List<Post>();

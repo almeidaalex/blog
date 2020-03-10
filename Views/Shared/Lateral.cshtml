@@ -1,0 +1,22 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<aside>
+    <div>
+        <h3>Busca</h3>
+        <form asp-action="Busca" method="get" class="form-inline">
+            <div class="input-group">
+                <input type="text" name="termo" class="form-control" placeholder="Buscar por...">
+                <span class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Ok</button>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div id="categoria">
+        <h3>Categorias</h3>
+    </div>
+
+    <div id="autores">
+        <h3>Autores</h3>
+    </div>
+</aside>

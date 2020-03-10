@@ -37,6 +37,15 @@ namespace Blog.Infra
             return lista;
         }
 
+        public IEnumerable<Post> ListaPublicados()
+        {
+            using(var contexto = new BlogContext())
+            {
+                return contexto.Posts.Where(p => p.Publicado)
+                    .OrderByDescending(p => p.DataPublicacao).ToArray();
+            }
+        }
+
         internal Post BuscaPorId(int id)
         {
             using (var contexto = new BlogContext())
@@ -105,6 +114,17 @@ namespace Blog.Infra
                 .Select(p => p.Categoria)
                 .Distinct()
                 .ToList();
+            }
+        }
+
+        public IList<Post> BuscaPeloTermo(string termo)
+        {
+            using(var contexto = new BlogContext())
+            {
+                return contexto.Posts
+                    .Where(p => p.Titulo.Contains(termo) || p.Resumo.Contains(termo))
+                    .Where(p => p.Publicado)
+                    .ToArray();
             }
         }
     }

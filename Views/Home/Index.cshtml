@@ -1,8 +1,22 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IList<Post>
+
+@if(ViewBag.Termo != null )
+{
+    <h3>Resultados para busca por: @ViewBag.Termo</h3>
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if (!Model.Any())
+{
+    <article>
+        <p>Não há resultados</p>
+    </article>
+}
+
+@foreach (var post in Model)
+{
+    <article>
+        <h1>@post.Titulo</h1>
+        <p>@post.Resumo</p>
+    </article>
+}
+

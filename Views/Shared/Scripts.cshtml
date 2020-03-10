@@ -1,0 +1,17 @@
+﻿
+<script src="~/js/jquery-3.4.1.min.js"></script>
+<script src="~/js/jquery.validate.min.js"></script>
+<script src="~/js/jquery.validate.unobtrusive.js"></script>
+<script src="~/js/jquery-ui.min.js"></script>
+<script>
+        $("input[name='Categoria']").autocomplete({
+        source: function (request, response) {
+                $.post(
+                    "@Url.Action("CategoriaAutocomplete")",
+                    { termo: request.term },
+                    function (data) {
+                        response(data);
+                    });
+            }
+        });
+</script>

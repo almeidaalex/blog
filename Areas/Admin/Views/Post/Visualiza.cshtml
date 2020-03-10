@@ -1,0 +1,17 @@
+﻿@model Post
+
+<h1>Editar Post</h1>
+<form asp-controller="Post" asp-action="EditaPost" method="post">
+    <input asp-for="Id" type="hidden" />
+    <input asp-for="DataPublicacao" type="hidden" />
+    <input asp-for="Publicado" type="hidden" />
+
+    @Html.EditorForModel()
+
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+</form>
+
+
+@section Scripts {
+    <partial name="_Scripts" />
+}

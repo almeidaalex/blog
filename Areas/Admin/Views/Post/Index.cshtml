@@ -1,0 +1,45 @@
+﻿@model IList<Post>
+
+<h2>Lista de Posts</h2>
+<a asp-action="Novo" class="btn btn-primary"> Incluir Post </a>
+<table class="table table-striped table-hover table-bordered">
+    <caption>Lista dos posts cadastrados no blog</caption>
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Resumo</th>
+            <th>Categoria</th>
+            <th>Publicado?</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+
+                <td>
+                    <a asp-action="Visualiza" asp-route-id="@p.Id">@p.Titulo</a>
+                </td>
+                <td>@p.Resumo</td>
+                <td>@p.Categoria</td>
+                <td>
+                    @if (p.Publicado)
+                    {
+                        @Html.Raw(p.DataPublicacao.Value.ToString("dd/MM/yyyy"))
+                    }
+                    else
+                    {
+                        @Html.Raw("Não")
+                    }
+                </td>
+                <td>
+                    <a asp-action="RemovePost" asp-route-id="@p.Id">Remover</a>
+                    <a asp-action="PublicaPost" asp-route-id="@p.Id">Publicar</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
